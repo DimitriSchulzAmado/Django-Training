@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 from cadastros.models import Cidade
+from cadastros.templates.forms import CidadeForm
 
 
 # Create your views here.
@@ -8,7 +9,7 @@ from cadastros.models import Cidade
 # functions based views -> fbv
 def lista_cidades(request):
 
-    qs = Cidade.objects.all()  # qs = query set
+    qs = Cidade.objects.all().order_by('nome')  # qs -> query set
 
     context = {
         'cidades': qs,
@@ -28,3 +29,28 @@ def detalhe_cidades(request, id):
     }
 
     return render(request, 'cadastros/detalhe_cidades.html', context)
+
+
+# Create
+def cadastra_cidade(request):
+
+    if request.method == 'POST':
+        form = CidadeForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('cidade-list')
+    else:
+        form = CidadeForm()
+
+    context = {
+        'form': form,
+        'titulo':'SIDIA'
+    }
+    return render(request, 'cadastros/cadastra_cidades.html', context)
+
+def delete_cidade(request, id):
+    cidade = get_object_or_404(Cidade, pk=id)
+    cidade.delete()
+
+    return redirect('cidade-list')
