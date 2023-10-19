@@ -3,3 +3,6 @@ venv
 
 # .idea
 .idea
+
+#py
+__pycache__
