@@ -1,11 +1,12 @@
-from django.urls import include, path
+from django.contrib.auth.decorators import login_required
+from django.urls import path
 
-from cadastros.views import lista_cidades, detalhe_cidade, cadastra_cidade, delete_cidade, update_cidade
+from cadastros.views import CidadeList, CidadeDetail, CidadeDelete, CidadeRegister, CidadeUpdate
 
 urlpatterns = [
-    path('', lista_cidades, name='cidades-list'),
-    path('detalhe/<int:id>/', detalhe_cidade, name='cidades-detalhe'),
-    path('delete/<int:id>/', delete_cidade, name='cidades-delete'),
-    path('update/<int:id>/', update_cidade, name='cidades-update'),
-    path('create/', cadastra_cidade, name='cidades-cadastro')
+    path('', CidadeList.as_view(), name='cidades-list'),
+    path('detalhe/<int:pk>/', CidadeDetail.as_view(), name='cidades-detalhe'),
+    path('delete/<int:pk>/', login_required(CidadeDelete.as_view()), name='cidades-delete'),
+    path('update/<int:pk>/', login_required(CidadeUpdate.as_view()), name='cidades-update'),
+    path('create/', login_required(CidadeRegister.as_view()), name='cidades-cadastro')
 ]
