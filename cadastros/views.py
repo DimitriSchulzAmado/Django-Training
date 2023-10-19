@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, get_object_or_404, redirect
 
 from cadastros.models import Cidade
@@ -18,6 +20,7 @@ def lista_cidades(request):
 
     return render(request, 'cadastros/lista_cidades.html', context)
 
+
 def detalhe_cidade(request, id):
 
     #id_cidade = request.GET['id_cidade']
@@ -32,6 +35,7 @@ def detalhe_cidade(request, id):
 
 
 # Create
+@login_required
 def cadastra_cidade(request):
 
     if request.method == 'POST':
@@ -50,7 +54,9 @@ def cadastra_cidade(request):
     return render(request, 'cadastros/cadastra_cidades.html', context)
 
 
+@login_required
 def update_cidade(request, id):
+
     cidade_obj = get_object_or_404(Cidade, pk=id)
     form = CidadeForm(request.POST or None, instance=cidade_obj)
 
@@ -69,7 +75,9 @@ def update_cidade(request, id):
     return render(request, 'cadastros/update_cidades.html', context)
 
 
+@login_required
 def delete_cidade(request, id):
+
     cidade = get_object_or_404(Cidade, pk=id)
     cidade.delete()
 
