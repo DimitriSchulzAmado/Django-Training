@@ -1,3 +1,4 @@
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, DeleteView, CreateView, UpdateView
 
@@ -9,7 +10,7 @@ class SidiaBaseListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['titulo'] = ''
+        context['titulo'] = 'INATEL'
         return context
 
 
@@ -40,8 +41,9 @@ class CidadeRegister(CreateView):
     success_url = reverse_lazy('cidades-list')
 
 
-class CidadeUpdate(UpdateView):
+class CidadeUpdate(UpdateView, SuccessMessageMixin):
     model = Cidade
     form_class = CidadeForm
     template_name = 'cadastros/update_cidades.html'
     success_url = reverse_lazy('cidades-list')
+    success_message = 'Success to update register!'
