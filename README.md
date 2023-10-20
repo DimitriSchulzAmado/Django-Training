@@ -1,43 +1,72 @@
 # Steps
+
+### Basic Steps
 ***
--Instalar os pacotes:
+- Instalar os pacotes:
 
-`pip install -r requirements.txt`
+    `pip install -r requirements.txt`
 
--Criar um projeto Django:
 
-`django-admin startproject <project_name> .`
+- Criar um projeto Django:
 
--Executar o servidor:
+    `django-admin startproject <project_name> .`
 
-`python manage.py runserver`
 
--Configurar o runserver para run/debug direto pelo PyCharm
+- Executar o servidor:
 
--Criar um novo app:
+    `python manage.py runserver`
 
-`django-admin startapp <app_name>`
 
--Criar as migrações para serem executados no BD:
+Configurar o runserver para run/debug direto pelo PyCharm
 
-`python manage.py makemigrations`
+- Criar um novo app:
 
--Executar as alterações no BD:
+    `django-admin startapp <app_name>`
 
-`python manage.py migrate`
 
--Criar um superusuario:
+- Criar as migrações para serem executados no BD:
 
-`python manage.py createsuperuser`
+    `python manage.py makemigrations`
 
--Configurar o pycharm para rodar o python console com suporte ao django:
 
-```
-import sys; os, django
-print('Python %s on %s' % (sys.version, sys.platform))
-sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "proj.settings")
-django.setup()
-```
+- Executar as alterações no BD:
 
--Instalar o ipython (para um console mais poderoso): `pip install ipython`
+    `python manage.py migrate`
+
+
+- Criar um superusuario:
+
+    `python manage.py createsuperuser`
+
+
+- Configurar o pycharm para rodar o python console com suporte ao django:
+
+    ```
+    import sys; os, django
+    print('Python %s on %s' % (sys.version, sys.platform))
+    sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "proj.settings")
+    django.setup()
+    ```
+
+- Instalar o ipython (para um console mais poderoso): `pip install ipython`
+
+
+### Docker
+***
+Rodar com docker-compose:
+
+- Se o arquivo tiver o nome diferente de "docker-compose.yml":
+
+    `docker-compose -f file_name.yml build`
+
+    `docker-compose -f file_name.yml up -d`
+
+
+- Senão rodar somente:
+
+    `docker-compose up`
+
+
+- Entrar na maquina:
+    `docker exec -it <container_id> bash`
