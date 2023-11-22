@@ -70,3 +70,7 @@ Rodar com docker-compose:
 
 - Entrar na maquina:
     `docker exec -it <container_id> bash`
+
+
+- Remove os containers que não estão sendo usados:
+    `docker-compose up --remove-orphans`

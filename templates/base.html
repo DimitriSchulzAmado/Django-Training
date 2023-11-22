@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +11,9 @@
 </head>
 <body>
     <div class="container">
+
+        <img src="{% static 'cadastros/img/lareira.jpg' %}" class="img-fluid">
+
         <div class="alert alert-primary" role="alert"> Bem-vindo a página da {{ titulo }}</div>
         {% if messages %}
             {% for message in messages %}
@@ -25,6 +29,8 @@
 
         {% block conteudo %}
         {% endblock %}
+
+        <img src="{% static 'img/sidia-logo.jpg' %}" class="rounded mx-auto d-block">
     </div>
 </body>
 </html>

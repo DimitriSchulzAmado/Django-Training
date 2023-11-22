@@ -124,6 +124,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    BASE_DIR / 'static_files'
+]
+
 # Hack para importar os arquivos de settings de acordo com o ambiente
 try:
     import __dev__
