@@ -11,12 +11,23 @@ services:
     entrypoint: ['sh', 'run-django.sh']
     depends_on:
       - db
+    networks:
+      - database
+      - web
 
   proxy:
     image: nginx
     ports:
       - "80:80"
       - "443:443"
+    volumes:
+      - ./etc/nginx:/etc/nginx/conf.d/
+      - ./log/nginx:/var/log/nginx
+      - ./static/:/var/www/static
+    depends_on:
+      - app
+    networks:
+      - web
 
   db:
     image: mdillon/postgis
@@ -33,6 +44,22 @@ services:
     restart: always
     ports:
       - 8081:8080
+    networks:
+      - database
+
+  portainer:
+    image: portainer/portainer
+    ports:
+      - "9000:9000"
+    command: -H unix:///var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer-data:/data
 
 volumes:
   sidia-data-prod:
+  portainer-data:
+
+networks:
+  web:
+  database:

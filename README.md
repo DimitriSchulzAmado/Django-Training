@@ -52,25 +52,29 @@ Configurar o runserver para run/debug direto pelo PyCharm
 - Instalar o ipython (para um console mais poderoso): `pip install ipython`
 
 
+- CollectStatic: junta todos os arquivos estáticos e coloca eles dentro de uma pasta unica chamada "static":
+    
+    `python manage.py collectstatic`
+
 ### Docker
 ***
 Rodar com docker-compose:
 
 - Se o arquivo tiver o nome diferente de "docker-compose.yml":
 
-    `docker-compose -f file_name.yml build`
+  `docker-compose -f file_name.yml build`
 
-    `docker-compose -f file_name.yml up -d`
+  `docker-compose -f file_name.yml up -d`
 
 
 - Senão rodar somente:
 
-    `docker-compose up`
+  `docker-compose up`
 
 
 - Entrar na maquina:
-    `docker exec -it <container_id> bash`
+  `docker exec -it <container_id> bash`
 
 
 - Remove os containers que não estão sendo usados:
-    `docker-compose up --remove-orphans`
+  `docker-compose up --remove-orphans`

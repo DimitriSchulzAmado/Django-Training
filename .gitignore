@@ -4,5 +4,12 @@ venv
 # .idea
 .idea
 
+# static
+/static/
+
+#log
+/log/*
+!.gitkeep
+
 #py
 __pycache__
