@@ -20,12 +20,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'fu-y9j3a)uln$atvb!u8gth=2$s$5ph98trfq48o-ns7vf09t2'
+SECRET_KEY = '_itlci1xu*-1db!1_-t*b%3=sn#9f^mw-5btfcmfg5)n5c(*qp'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_URL = '/login/'
+LOGOUT_URL = '/logout/'
 
 
 # Application definition
@@ -38,7 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'cadastros'
+    'crispy_forms',
+    'django_tables2',
+    'cadastros',
+    'tickets'
 ]
 
 MIDDLEWARE = [
@@ -75,16 +83,16 @@ WSGI_APPLICATION = 'proj.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'sidia',
-        'USER': 'postgres',
-        'PASSWORD': 'root',
-        'HOST': '127.0.0.1',
-        'PORT': '5433'
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'sidia',
+#         'USER': 'postgres',
+#         'PASSWORD': 'root',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5433',
+#     }
+# }
 
 
 # Password validation
@@ -109,9 +117,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-BR'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -127,16 +135,23 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'static_files'
+    BASE_DIR / "static_files",
 ]
 
-# Hack para importar os arquivos de settings de acordo com o ambiente
-try:
-    import __dev__
-    from .settings_dev import *
-except ImportError:
-    try:
-        import __prodroduction__
-        from .settings_production import *
-    except:
-        pass
+MEDIA_ROOT = 'media'
+MEDIA_URL = 'files/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+DJANGO_TABLES2_TEMPLATE = "django_tables2/bootstrap4.html"
+
+#hack para importar os arquivos de settings de acordo com o ambiente
+# try:
+#     import __dev__
+#     from .settings_dev import *
+# except ImportError:
+#     try:
+#         import __production__
+#         from .settings_production import *
+#     except:
+#         pass

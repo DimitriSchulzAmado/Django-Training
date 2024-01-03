@@ -11,10 +11,12 @@
 </head>
 <body>
     <div class="container">
-
-        <img src="{% static 'cadastros/img/lareira.jpg' %}" class="img-fluid">
-
         <div class="alert alert-primary" role="alert"> Bem-vindo a página da {{ titulo }}</div>
+        {% fi request.user.is_authenticated %}
+            <a href="{% url 'login' %}" class="btn btn-danger">Sair</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="btn btn-primary">Entrar</a>
+        {% endif %}
         {% if messages %}
             {% for message in messages %}
                 <div class="alert alert-info alert-dismissible fade show" role="alert">
