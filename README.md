@@ -19,7 +19,9 @@
 
 Configurar o runserver para run/debug direto pelo PyCharm
 
-- Criar um novo app:
+- Formas de criar um novo app:
+
+    `python manage.py startapp <app_name>`
 
     `django-admin startapp <app_name>`
 

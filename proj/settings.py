@@ -145,7 +145,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 DJANGO_TABLES2_TEMPLATE = "django_tables2/bootstrap4.html"
 
-#hack para importar os arquivos de settings de acordo com o ambiente
+# hack para importar os arquivos de settings de acordo com o ambiente
 # try:
 #     import __dev__
 #     from .settings_dev import *
