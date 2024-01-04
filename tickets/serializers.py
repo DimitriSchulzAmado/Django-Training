@@ -10,7 +10,6 @@ class InteracaoSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
 class SolicitacaoSerializer(serializers.ModelSerializer):
 
     interacoes = InteracaoSerializer(many=True, read_only=True, source='interacoes')

@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
 {% block conteudo %}
-    <h1>Remover Cidade:</h1>
+    <h1>Remove City:</h1>
 
     <form method="POST">
         {% csrf_token %}
         <p>Are you sure you want to delete "{{ cidade }}"?</p>
-        <button type="submit" class="btn btn-primary">Confirmar</button>
+        <button type="submit" class="btn btn-primary">Confirm</button>
     </form>
 {% endblock %}

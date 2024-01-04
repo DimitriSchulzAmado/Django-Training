@@ -1,4 +1,4 @@
-from rest_framework import status
+from rest_framework import status, permissions
 from rest_framework.generics import ListAPIView, ListCreateAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -17,5 +17,6 @@ from cadastros.serializers import CidadeSerializer
 
 class CidadeAPIList(ListCreateAPIView):
     queryset = Cidade.objects.all()
-    serializer = CidadeSerializer
+    serializer_class = CidadeSerializer
+    permission_classes = [permissions.IsAuthenticated]
 

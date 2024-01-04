@@ -1,18 +1,23 @@
+#!/usr/bin/env python
+from __future__ import absolute_import
+
 import os
+
 import django
 from django.db import connections
 from django.db.utils import OperationalError
 
-if __name__ == '__main__': # pragma: no cover
+if __name__ == "__main__":  # pragma: no cover
+
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "proj.settings_production")
 
     try:
-        django.setup() # Load django
-        db_conn = connections['default'] # Try making a connection
+        django.setup()
+        db_conn = connections['default']
         c = db_conn.cursor()
 
     except OperationalError as e:
-        print("------------OperationalError------------")
+        print('--------------OperationalError--------------')
         print(e)
         exit(1)
 

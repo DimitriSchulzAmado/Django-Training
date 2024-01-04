@@ -1,16 +1,13 @@
 version: '3.5'
 
 services:
-
   app:
-    build: .
-    ports:
-      - "8001:8000"
+    image: sidia/local:1.0
     volumes:
       - .:/code
     entrypoint: ['sh', 'run-django.sh']
     depends_on:
-      - db
+      - db_prod
     networks:
       - database
       - web
@@ -30,7 +27,7 @@ services:
     networks:
       - web
 
-  db:
+  db_prod:
     image: mdillon/postgis
     environment:
       POSTGRES_PASSWORD: root
@@ -39,6 +36,12 @@ services:
       - "5433:5432"
     volumes:
       - sidia-data-prod:/var/lib/postgresql/data
+
+  mongo_db:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: sidia
 
   adminer:
     image: adminer
