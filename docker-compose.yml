@@ -7,7 +7,7 @@ services:
       - .:/code
     entrypoint: ['sh', 'run-django.sh']
     depends_on:
-      - db_prod
+      - db
     networks:
       - database
       - web
@@ -27,7 +27,7 @@ services:
     networks:
       - web
 
-  db_prod:
+  db:
     image: mdillon/postgis
     environment:
       POSTGRES_PASSWORD: root
